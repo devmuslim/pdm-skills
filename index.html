@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDM Skills — نظام الذكاء الاصطناعي لمديري التسليم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: #1e1e2e;
+    --accent: #4f8ef7;
+    --accent2: #7c3aed;
+    --accent3: #06b6d4;
+    --text: #e2e2f0;
+    --text-muted: #6b6b8a;
+    --text-dim: #3a3a5c;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans Arabic', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem !important;
+    font-weight: 600;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    z-index: 1;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    font-family: var(--mono);
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease 0.1s both;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+    animation: fadeInUp 0.6s ease 0.2s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: #3d7de8;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(79,142,247,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-muted);
+    background: var(--surface);
+  }
+
+  /* STATS */
+  .stats {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease 0.4s both;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: var(--mono);
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* SECTION */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin-bottom: 3rem;
+  }
+
+  /* PLUGINS GRID */
+  .plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .plugin-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plugin-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+    border-radius: 12px;
+  }
+
+  .plugin-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(79,142,247,0.1);
+  }
+
+  .plugin-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .plugin-name {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .plugin-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .plugin-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .plugin-meta {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .new-tag {
+    background: rgba(16,185,129,0.15) !important;
+    color: var(--green) !important;
+    border-color: rgba(16,185,129,0.3) !important;
+  }
+
+  .meta-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(79,142,247,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(79,142,247,0.15);
+  }
+
+  /* COMMANDS SHOWCASE */
+  .commands-showcase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.red { background: #ef4444; }
+  .terminal-dot.yellow { background: #f59e0b; }
+  .terminal-dot.green { background: #10b981; }
+
+  .terminal-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    line-height: 2;
+  }
+
+  .cmd-line { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .cmd-prompt { color: var(--accent); }
+  .cmd-text { color: var(--text); }
+  .cmd-comment { color: var(--text-dim); }
+  .cmd-output { color: var(--green); margin-right: 1.5rem; }
+  .cmd-warning { color: var(--yellow); margin-right: 1.5rem; }
+  .cmd-error { color: var(--red); margin-right: 1.5rem; }
+  .cmd-blank { height: 0.5rem; }
+
+  /* INSTALL */
+  .install-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tab {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    transition: all 0.2s;
+  }
+
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text);
+    overflow-x: auto;
+  }
+
+  .code-block .comment { color: var(--text-dim); }
+  .code-block .cmd { color: var(--accent3); }
+  .code-block .str { color: var(--green); }
+  .code-block .flag { color: var(--yellow); }
+
+  /* QUICKSTART */
+  .quickstart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .qs-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .qs-card:hover { border-color: rgba(79,142,247,0.4); }
+
+  .qs-arrow {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    padding-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .qs-trigger {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .qs-command {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--accent3);
+    background: rgba(6,182,212,0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(6,182,212,0.15);
+    display: inline-block;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 2rem;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">pdm-skills</div>
+  <ul class="nav-links">
+    <li><a href="#plugins">الـ Plugins</a></li>
+    <li><a href="#commands">الأوامر</a></li>
+    <li><a href="#install">التثبيت</a></li>
+    <li><a href="https://github.com/devmuslim/pdm-skills" target="_blank" class="nav-cta">GitHub →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      نظام ذكاء اصطناعي متخصص لمديري التسليم
+    </div>
+    <h1>
+      <span class="highlight">PDM Skills</span><br>
+      Marketplace
+    </h1>
+    <p>90+ مهارة و35+ workflow عبر 13 plugin — من تخطيط الإصدار إلى مراجعة الكود والتصميم وقياس KPIs وتطوير الفريق.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/devmuslim/pdm-skills" target="_blank" class="btn-primary">
+        ابدأ الآن
+        <span>→</span>
+      </a>
+      <a href="#plugins" class="btn-secondary">
+        استكشف الـ Plugins
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div style="position:relative;z-index:1;padding:0 2rem 4rem;max-width:900px;margin:0 auto;">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">90+</div>
+      <div class="stat-label">مهارة متخصصة</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">35+</div>
+      <div class="stat-label">workflow جاهز</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">13</div>
+      <div class="stat-label">plugin</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">إصدار أسرع</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUICKSTART -->
+<section>
+  <div class="section-label">// ابدأ من هنا</div>
+  <h2 class="section-title">أمر واحد يطلق workflow كامل</h2>
+  <p class="section-desc">بدلاً من شرح ما تحتاجه في كل مرة، اكتب أمراً واحداً وكلود يمشي معك خطوة بخطوة.</p>
+
+  <div class="quickstart-grid">
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">إصدار جديد؟</div>
+        <span class="qs-command">/plan-release</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">تأخير في التسليم؟</div>
+        <span class="qs-command">/handle-delay</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">اجتماع اللجنة التوجيهية؟</div>
+        <span class="qs-command">/steering-deck</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">مشكلة في الجودة؟</div>
+        <span class="qs-command">/bug-triage</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">خلاف بين الفرق؟</div>
+        <span class="qs-command">/resolve-conflict</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">مراجعة ما بعد الإصدار؟</div>
+        <span class="qs-command">/post-mortem</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">مراجعة كود مع BRD؟</div>
+        <span class="qs-command">/review-code</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">مراجعة تصميم Figma؟</div>
+        <span class="qs-command">/review-figma</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">فهرسة BRD's من Drive؟</div>
+        <span class="qs-command">/index-brd</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">تقرير KPI للإصدار؟</div>
+        <span class="qs-command">/release-kpi</span>
+      </div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-arrow">//</div>
+      <div>
+        <div class="qs-trigger">تشخيص مستوى الفريق؟</div>
+        <span class="qs-command">/assess-team</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TERMINAL DEMO -->
+<section id="commands">
+  <div class="section-label">// مثال حي</div>
+  <h2 class="section-title">شاهد كيف يعمل <span style="color:var(--accent)">/plan-release</span></h2>
+  <p class="section-desc">من سطر واحد إلى خطة تسليم كاملة في دقائق.</p>
+
+  <div class="commands-showcase">
+    <div class="terminal-header">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot yellow"></span>
+      <span class="terminal-dot green"></span>
+      <span class="terminal-title">claude — pdm-skills</span>
+    </div>
+    <div class="terminal-body">
+      <div class="cmd-line">
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">/plan-release تطبيق الجوال v3.0 — دردشة فورية وإشعارات Push</span>
+      </div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-output">▸ المرحلة 1/5 — تحديد النطاق (release-scope)</span></div>
+      <div class="cmd-line"><span class="cmd-output">  ✓ Must Have: الدردشة الفورية، Push Notifications</span></div>
+      <div class="cmd-line"><span class="cmd-output">  ✓ Should Have: الوضع الليلي</span></div>
+      <div class="cmd-line"><span class="cmd-output">  ✗ Won't Have: دعم متعدد اللغات (مؤجل v3.1)</span></div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-output">▸ المرحلة 2/5 — خريطة التبعيات (dependency-map)</span></div>
+      <div class="cmd-line"><span class="cmd-warning">  ⚠ تبعية حرجة: مراجعة App Store → 7-14 يوم</span></div>
+      <div class="cmd-line"><span class="cmd-warning">  ⚠ Backend يجب أن يسبق Mobile بأسبوع</span></div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-output">▸ المرحلة 3/5 — سجل المخاطر (risk-register)</span></div>
+      <div class="cmd-line"><span class="cmd-error">  🔴 R1: تأخر App Store — احتمالية عالية / تأثير عالٍ [9]</span></div>
+      <div class="cmd-line"><span class="cmd-warning">  🟡 R2: تعقيد WebSocket — احتمالية متوسطة [6]</span></div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-output">▸ المرحلة 4/5 — Milestones</span></div>
+      <div class="cmd-line"><span class="cmd-output">  الأسبوع 1-2 → WebSocket Spike + Firebase</span></div>
+      <div class="cmd-line"><span class="cmd-output">  الأسبوع 3   → تطوير الدردشة + Push</span></div>
+      <div class="cmd-line"><span class="cmd-output">  الأسبوع 4   → Code Freeze + رفع App Store</span></div>
+      <div class="cmd-line"><span class="cmd-output">  الأسبوع 5   → UAT + Regression</span></div>
+      <div class="cmd-line"><span class="cmd-output">  الأسبوع 6   → إطلاق مرحلي 10%→50%→100%</span></div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-output">▸ المرحلة 5/5 — قائمة التحقق قبل الإطلاق ✓</span></div>
+      <div class="cmd-blank"></div>
+      <div class="cmd-line"><span class="cmd-comment">// التالي: /assess-readiness أو /status-update</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PLUGINS -->
+<section id="plugins">
+  <div class="section-label">// الـ 13 Plugin</div>
+  <h2 class="section-title">كل plugin يغطي مجالاً كاملاً</h2>
+  <p class="section-desc">مصممة لتعمل معاً أو بشكل مستقل حسب احتياجك.</p>
+
+  <div class="plugins-grid">
+    <div class="plugin-card">
+      <div class="plugin-icon">📦</div>
+      <div class="plugin-name">pdm-release-planning</div>
+      <div class="plugin-title">تخطيط الإصدار</div>
+      <div class="plugin-desc">تحديد النطاق، خريطة التبعيات، سجل المخاطر، الـ Milestones، وقائمة التحقق قبل الإطلاق.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">10 مهارة</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">📢</div>
+      <div class="plugin-name">pdm-stakeholder-delivery</div>
+      <div class="plugin-title">التواصل مع أصحاب المصلحة</div>
+      <div class="plugin-desc">تقارير الحالة، التعامل مع التأخير، الملخص التنفيذي، شرائح اللجنة التوجيهية.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">8 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">⚡</div>
+      <div class="plugin-name">pdm-agile-delivery</div>
+      <div class="plugin-title">التسليم الرشيق</div>
+      <div class="plugin-desc">صحة الـ Sprint، تنظيف الـ Backlog، تحليل الـ Velocity، مقاييس التدفق، PI Planning.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">12 مهارة</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🔍</div>
+      <div class="plugin-name">pdm-quality-testing</div>
+      <div class="plugin-title">الجودة والاختبار</div>
+      <div class="plugin-desc">استراتيجية الاختبار، تصنيف الأخطاء P0-P4، خطة UAT، بوابات الجودة، مراقبة ما بعد الإطلاق.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">7 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🤝</div>
+      <div class="plugin-name">pdm-cross-team-coordination</div>
+      <div class="plugin-title">التنسيق بين الفرق</div>
+      <div class="plugin-desc">خطط التكامل، Three Amigos، عقود API، قوالب التسليم، حل النزاعات بين الفرق.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">8 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">📊</div>
+      <div class="plugin-name">pdm-metrics-reporting</div>
+      <div class="plugin-title">المقاييس والتقارير</div>
+      <div class="plugin-desc">مقاييس DORA، توقعات التسليم، Post-Mortem بلا لوم، لوحة Portfolio.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">6 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🏢</div>
+      <div class="plugin-name">pdm-vendor-management</div>
+      <div class="plugin-title">إدارة الموردين</div>
+      <div class="plugin-desc">تقييم الموردين، مراجعة SLA، تقييم مخاطر الطرف الثالث، جدول المشتريات.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">5 مهارات</span>
+        <span class="meta-tag">2 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🛠</div>
+      <div class="plugin-name">pdm-toolkit</div>
+      <div class="plugin-title">أدوات عامة</div>
+      <div class="plugin-desc">سجل القرارات، طلبات التغيير، تسهيل الاجتماعات، خطة الإدماج، مراجعة الوثائق.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">5 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🔎</div>
+      <div class="plugin-name">code-review</div>
+      <div class="plugin-title">مراجعة الكود والتصميم</div>
+      <div class="plugin-desc">تحليل BRD تلقائياً، مراجعة كود .NET مقابل المتطلبات، ومراجعة تصميم Figma مقابل BRD.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">3 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+        <span class="meta-tag new-tag">جديد</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">📚</div>
+      <div class="plugin-name">knowledge-base</div>
+      <div class="plugin-title">مستودع المتطلبات</div>
+      <div class="plugin-desc">فهرسة BRD's من Google Drive، بناء خريطة التبعيات، وربطها تلقائياً عند التخطيط.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">3 مهارات</span>
+        <span class="meta-tag">3 أوامر</span>
+        <span class="meta-tag new-tag">جديد</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">📈</div>
+      <div class="plugin-name">delivery-kpi</div>
+      <div class="plugin-title">KPI التسليم</div>
+      <div class="plugin-desc">تقرير KPI شامل لكل إصدار من Jira — سرعة التسليم، الجودة، التوافق مع BRD، وأداء الفريق.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">5 مهارات</span>
+        <span class="meta-tag">2 أوامر</span>
+        <span class="meta-tag new-tag">جديد</span>
+      </div>
+    </div>
+
+    <div class="plugin-card">
+      <div class="plugin-icon">🏋️</div>
+      <div class="plugin-name">agile-coach</div>
+      <div class="plugin-title">Agile Coach ذكي</div>
+      <div class="plugin-desc">تشخيص مستوى الفريق، خطط تطوير شخصية، جلسات تعليمية تفاعلية، وتحديات تحفيزية. مصمم للفرق التي تبدأ Agile من الصفر.</div>
+      <div class="plugin-meta">
+        <span class="meta-tag">5 مهارات</span>
+        <span class="meta-tag">5 أوامر</span>
+        <span class="meta-tag new-tag">جديد</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="section-label">// التثبيت</div>
+  <h2 class="section-title">جاهز في دقيقتين</h2>
+  <p class="section-desc">ثلاث طرق للتثبيت حسب الأداة التي تستخدمها.</p>
+
+  <div class="install-tabs">
+    <button class="tab active" onclick="showTab('cowork', this)">Claude Cowork</button>
+    <button class="tab" onclick="showTab('code', this)">Claude Code</button>
+    <button class="tab" onclick="showTab('other', this)">أدوات أخرى</button>
+  </div>
+
+  <div id="tab-cowork" class="code-block">
+    <div class="comment"># الطريقة الأسهل — بدون برمجة</div>
+    <br>
+    <div>1. افتح <span class="str">Customize</span> (أسفل يسار)</div>
+    <div>2. اذهب لـ <span class="str">Browse plugins → Personal → +</span></div>
+    <div>3. اختر <span class="str">Add marketplace from GitHub</span></div>
+    <div>4. أدخل: <span class="cmd">devmuslim/pdm-skills</span></div>
+    <br>
+    <div class="comment"># جميع الـ 13 plugin تُثبَّت تلقائياً ✓</div>
+  </div>
+
+  <div id="tab-code" class="code-block" style="display:none">
+    <div class="comment"># Claude Code CLI</div>
+    <br>
+    <div><span class="cmd">claude plugin add</span> <span class="flag">--marketplace</span> <span class="str">devmuslim/pdm-skills</span></div>
+    <br>
+    <div class="comment"># ثم استخدم الأوامر مباشرة:</div>
+    <div><span class="cmd">/plan-release</span> وصف الإصدار هنا</div>
+    <div><span class="cmd">/review-code</span> الصق الكود هنا</div>
+    <div><span class="cmd">/index-brd</span> مسار مجلد BRD على Drive</div>
+    <div><span class="cmd">/release-kpi</span> اسم الإصدار في Jira</div>
+    <div><span class="cmd">/assess-team</span> الفريق كله</div>
+  </div>
+
+  <div id="tab-other" class="code-block" style="display:none">
+    <div class="comment"># نسخ المهارات لـ Gemini CLI أو Cursor أو Codex</div>
+    <br>
+    <div><span class="cmd">for</span> plugin in pdm-*/; do</div>
+    <div>  cp -r "$plugin/skills/"* ~/.gemini/skills/ <span class="comment">2>/dev/null</span></div>
+    <div>done</div>
+    <br>
+    <div class="comment"># ملاحظة: الأوامر (/commands) تعمل فقط مع Claude</div>
+    <div class="comment"># المهارات (skills) تعمل مع أي AI يقرأ SKILL.md</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label">// خارطة الطريق</div>
+  <h2 class="section-title">ما القادم في pdm-skills</h2>
+  <p class="section-desc">نبني المنظومة بشكل تدريجي — كل plugin يكمل الآخر.</p>
+
+  <div style="max-width:700px;margin:3rem auto;display:flex;flex-direction:column;gap:1rem;">
+
+    <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;border-right:3px solid var(--green);">
+      <span style="font-size:1.2rem;margin-top:2px;">✅</span>
+      <div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:0.25rem;">المرحلة 1 — الأساس</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">9 PDM plugins + code-review + knowledge-base + delivery-kpi + agile-coach</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;border-right:3px solid var(--accent);">
+      <span style="font-size:1.2rem;margin-top:2px;">🔄</span>
+      <div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:0.25rem;">المرحلة 2 — التكاملات</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Google Drive sync، Jira KPIs، Figma review — ربط المنظومة كاملة</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;border-right:3px solid var(--text-dim);">
+      <span style="font-size:1.2rem;margin-top:2px;">🔮</span>
+      <div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:0.25rem;">المرحلة 3 — القادم</div>
+        <div style="color:var(--text-muted);font-size:0.85rem;">Decision Intelligence، BA Copilot، Slack/Teams integration، Dashboard بصري</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">pdm-skills</div>
+  <p>مبني بواسطة <a href="https://github.com/devmuslim" target="_blank">devmuslim</a> · مستوحى من <a href="https://github.com/phuryn/pm-skills" target="_blank">pm-skills</a></p>
+  <p style="margin-top:0.5rem;">مرخص بـ MIT · <a href="https://github.com/devmuslim/pdm-skills" target="_blank">github.com/devmuslim/pdm-skills</a></p>
+</footer>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + name).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  // Animate stats on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeInUp 0.5s ease both';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.plugin-card, .qs-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

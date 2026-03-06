@@ -1,0 +1,5 @@
+{
+  "name": "pdm-quality-testing",
+  "description": "Delivery quality: test strategy, acceptance criteria, bug triage, regression plans, UAT, and post-launch monitoring.",
+  "version": "1.2.0"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "delivery-kpi",
+  "description": "Delivery KPIs from Jira: velocity, cycle time, defect rate, UAT pass rate, BRD coverage, and on-time delivery. Supports release comparison.",
+  "version": "1.0.0"
+}

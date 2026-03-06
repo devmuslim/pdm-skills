@@ -1,0 +1,49 @@
+{
+  "_comment": "اختر إعداد Jira حسب نوع نظامك — Cloud أو Data Center. احذف الإعداد الذي لا تحتاجه.",
+
+  "mcpServers": {
+
+    "_OPTION_A_JIRA_CLOUD": {
+      "_comment": "✅ Jira Cloud — إذا كان رابطك مثل: yourcompany.atlassian.net",
+      "_instructions": [
+        "1. اذهب لـ: https://id.atlassian.com/manage-profile/security/api-tokens",
+        "2. أنشئ API Token جديد",
+        "3. ضع التوكن في JIRA_API_TOKEN",
+        "4. غيّر اسم المفتاح من _OPTION_A_JIRA_CLOUD إلى jira"
+      ],
+      "type": "sse",
+      "url": "https://mcp.atlassian.com/sse",
+      "env": {
+        "JIRA_URL": "https://YOUR-COMPANY.atlassian.net",
+        "JIRA_USERNAME": "your.email@company.com",
+        "JIRA_API_TOKEN": "YOUR_API_TOKEN_HERE"
+      }
+    },
+
+    "_OPTION_B_JIRA_DATA_CENTER": {
+      "_comment": "✅ Jira Data Center — إذا كان Jira مثبتاً على سيرفر داخلي",
+      "_instructions": [
+        "1. افتح Jira → Profile (أيقونة الشخص أعلى اليمين)",
+        "2. اختر: Personal Access Tokens → Create Token",
+        "3. سمّه مثلاً: claude-agile-coach",
+        "4. انسخ الـ Token (يظهر مرة واحدة فقط!)",
+        "5. ضعه في JIRA_PERSONAL_TOKEN",
+        "6. غيّر اسم المفتاح من _OPTION_B_JIRA_DATA_CENTER إلى jira",
+        "7. تأكد أن Claude Code مثبت: pip install uv"
+      ],
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://jira.YOUR-COMPANY.com",
+        "JIRA_PERSONAL_TOKEN": "YOUR_PAT_TOKEN_HERE"
+      }
+    },
+
+    "google-drive": {
+      "_comment": "✅ Google Drive — لحفظ التقييمات وخطط التطوير والتقارير الشهرية",
+      "type": "sse",
+      "url": "https://drive.mcp.claude.com/mcp"
+    }
+
+  }
+}
