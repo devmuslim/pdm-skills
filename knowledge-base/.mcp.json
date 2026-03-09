@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "google-drive": {
+      "type": "sse",
+      "url": "https://drive.mcp.claude.com/mcp"
+    }
+  }
+}

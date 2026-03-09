@@ -1,0 +1,5 @@
+{
+  "name": "pdm-metrics-reporting",
+  "description": "Delivery metrics: DORA metrics, forecasting, portfolio dashboards, blameless post-mortems, and lessons learned.",
+  "version": "1.2.0"
+}

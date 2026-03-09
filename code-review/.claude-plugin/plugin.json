@@ -1,0 +1,5 @@
+{
+  "name": "code-review",
+  "description": "Code and design review: analyze BRDs for gaps, review code quality, and review Figma designs against requirements.",
+  "version": "1.0.0"
+}

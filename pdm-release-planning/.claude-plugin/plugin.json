@@ -1,0 +1,5 @@
+{
+  "name": "pdm-release-planning",
+  "description": "Release planning from scope to launch: dependency mapping, risk registers, capacity planning, rollout strategies, and launch checklists.",
+  "version": "1.2.0"
+}

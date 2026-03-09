@@ -1,0 +1,5 @@
+{
+  "name": "pdm-agile-delivery",
+  "description": "Agile delivery: sprint health, backlog grooming, definition of done, blocker triage, velocity analysis, PI planning, and flow metrics.",
+  "version": "1.2.0"
+}

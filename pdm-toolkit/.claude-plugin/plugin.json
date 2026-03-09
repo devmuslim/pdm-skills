@@ -1,0 +1,5 @@
+{
+  "name": "pdm-toolkit",
+  "description": "General delivery manager utilities: decision logs, change requests, meeting facilitation, and proofreading.",
+  "version": "1.2.0"
+}

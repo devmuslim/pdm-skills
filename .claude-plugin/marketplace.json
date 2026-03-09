@@ -1,0 +1,152 @@
+{
+  "name": "pdm-skills",
+  "owner": {
+    "name": "devmuslim"
+  },
+  "plugins": [
+    {
+      "name": "pdm-release-planning",
+      "source": "./pdm-release-planning",
+      "description": "Release planning: scope, dependencies, risks, milestones, and launch checklists.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-stakeholder-delivery",
+      "source": "./pdm-stakeholder-delivery",
+      "description": "Stakeholder communication: status reports, delay handling, executive summaries, and steering decks.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-agile-delivery",
+      "source": "./pdm-agile-delivery",
+      "description": "Agile delivery: sprint health, backlog grooming, definition of done, blocker triage, velocity analysis, PI planning, and flow metrics.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-quality-testing",
+      "source": "./pdm-quality-testing",
+      "description": "Quality and testing: test strategy, bug classification, UAT plans, and quality gates.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-cross-team-coordination",
+      "source": "./pdm-cross-team-coordination",
+      "description": "Multi-team coordination: sync meetings, integration plans, API contracts, handoff templates, Three Amigos, and conflict resolution.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-metrics-reporting",
+      "source": "./pdm-metrics-reporting",
+      "description": "DORA metrics, delivery reports, blameless post-mortems, and lessons learned.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-vendor-management",
+      "source": "./pdm-vendor-management",
+      "description": "Vendor and third-party management: assessments, SLA reviews, procurement timelines, and risk.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-toolkit",
+      "source": "./pdm-toolkit",
+      "description": "General delivery manager utilities: decision logs, change requests, meeting facilitation, and proofreading.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "pdm-advanced-workflows",
+      "source": "./pdm-advanced-workflows",
+      "description": "Advanced workflows: weekly routines, emergency protocols, and onboarding new team members.",
+      "version": "1.2.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "code-review",
+      "source": "./code-review",
+      "description": "Code and design review: analyze BRDs for gaps, review code quality, and review Figma designs against requirements.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "knowledge-base",
+      "source": "./knowledge-base",
+      "description": "BRD knowledge base: index requirements in Google Drive, map dependencies, and retrieve business rules on demand.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "delivery-kpi",
+      "source": "./delivery-kpi",
+      "description": "Delivery KPIs from Jira: velocity, cycle time, defect rate, UAT pass rate, BRD coverage, and on-time delivery.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "agile-coach",
+      "source": "./agile-coach",
+      "description": "Agile Coach for teams starting from scratch. Assesses individuals by role, builds personal growth plans based on real Jira data, runs learning sessions and team challenges.",
+      "version": "1.1.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "team-os",
+      "source": "./team-os",
+      "description": "Team Operating System: Work Agreement, Ceremonies, DoD/DoR/AC, and Templates for Scrum, Kanban, Scrumban, and SAFe. Integrates with agile-coach.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "lead-intelligence",
+      "source": "./lead-intelligence",
+      "description": "Delivery Lead toolkit: System Thinking to diagnose root causes, Emotional Intelligence to read teams, communication frameworks for difficult conversations, conflict resolution, and influencing without authority.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    },
+    {
+      "name": "product-mindset",
+      "source": "./product-mindset",
+      "description": "Build product thinking in engineering teams: connect Stories to user value, validate assumptions before building, define success metrics, run discovery sessions, and shift from output to outcome mindset.",
+      "version": "1.0.0",
+      "author": {
+        "name": "devmuslim"
+      }
+    }
+  ]
+}

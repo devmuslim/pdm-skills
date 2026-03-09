@@ -1,0 +1,5 @@
+{
+  "name": "agile-coach",
+  "description": "Agile Coach for teams starting from scratch. Assesses individuals by role, builds personal growth plans based on real Jira data, runs learning sessions and team challenges.",
+  "version": "1.1.0"
+}
